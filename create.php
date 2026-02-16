@@ -9,10 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare("INSERT INTO students (name, email, phone) VALUES (?, ?, ?)");
     $stmt->execute([$name, $email, $phone]);
 
-    header("Location: index.php");
+    header("Location: index.php"); // <-- Must not have any prior output
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

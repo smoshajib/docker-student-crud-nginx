@@ -1,18 +1,17 @@
 <?php
-$host = 'localhost';
-$db   = 'studentdb';
-$user = 'dev';
-$pass = 'Dev@123456'; // যদি তোমার MySQL password থাকে সেটা বসাও
+$host = getenv('DB_HOST') ?: 'mysql';
+$db   = getenv('DB_NAME') ?: 'studentdb';
+$user = getenv('DB_USER') ?: 'dev';
+$pass = getenv('DB_PASSWORD') ?: 'Dev@123456';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-];
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "Database connection failed: " . $e->getMessage();
+    // Instead of echo, use die()
+    die("Database connection failed."); 
 }
+

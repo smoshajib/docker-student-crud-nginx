@@ -1,0 +1,48 @@
+services:
+  php-fpm:
+    build: .
+    container_name: student_nginx_app
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - student-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: student_nginx_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php-fpm
+    networks:
+      - student-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: student_nginx_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: studentdb
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: Dev@123456
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - student-net
+
+volumes:
+  db_data:
+
+networks:
+  student-net:
+    driver: bridge
+
+
+
+
+
+
