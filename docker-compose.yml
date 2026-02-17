@@ -1,7 +1,7 @@
 services:
   php-fpm:
     build: .
-    container_name: student_nginx_app
+    container_name: docker_student_nginx_app
     volumes:
       - ./:/var/www/html
     networks:
@@ -9,7 +9,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: student_nginx_web
+    container_name: docker_student_nginx_web
     ports:
       - "8080:80"
     volumes:
@@ -22,7 +22,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: student_nginx_db
+    container_name: docker_student_nginx_db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: studentdb

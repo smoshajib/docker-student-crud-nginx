@@ -12,4 +12,4 @@ INSERT INTO students (name, email, phone) VALUES
 ('Alice', 'alice@example.com', '1234567890'),
 ('Bob', 'bob@example.com', '0987654321'),
 ('Charlie', 'charlie@example.com', '1112223333'),
-('David', 'david@example.com', '4445556657');
+('David', 'david@example.com', '44455566576');

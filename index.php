@@ -13,7 +13,7 @@ $students = $stmt->fetchAll();
     <title>Student List</title>
 </head>
 <body>
-    <h1>Student List</h1>
+    <h1>Full Student List</h1>
 <a href="create.php">Add New Student</a><br><br>
 
 
